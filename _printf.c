@@ -1,42 +1,35 @@
 #include "main.h"
 #include <stdarg.h>
+
 /**
- * _printf - is a replica of printf
- * @s: string that enter my function
- * Return:
+ * printf - custom implementation of printf
+ * @format: string that contains the format specifiers
+ * Return: numbers of characters printed
  */
-
-int _printf(char *s, ...)
+int _printf(const char *format, ...)
 {
-	int i, count; 
-	int arg = 1;
+	int i, count = 0;
 
-	va_list place;
+	va_list args;
 
-	va_start(place, s);
+	va_start (args, format);
 
-	if (s != NULL)
+	if (format != NULL)
 	{
-		for (i = 0, count = 0; s[i] != '\0'; i++, count++)
+		for (i = 0; format[i] != '\0'; i++)
 		{
-			if(s[i] == "%")
+			if (format[i] == '%' && format[i + 1] != '\0')
 			{
-				count += (get_format(s[i + 1],s ,place) -1)
-				{
-					if (count == 0)
-					{
-						_putchar(s[i]);
-					}
-					else
-					{
-						_putchar(s[i]);
-					}
-				}
+					count += get_format(format[++i], args);
 			}
-			else if (s[i + 1] == '%')
+			else
 			{
-				_putchar('%');
+				_putchar(format[i]);
+				count++;
 			}
 		}
 	}
+
+	va_end(args);
+	return (count);
 }

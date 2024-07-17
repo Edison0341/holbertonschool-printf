@@ -1,5 +1,18 @@
 #include "main.h"
 #include <stdarg.h>
+/**
+ * hold - selects the correct function
+ *
+ *
+ */
+
+placeholder_t placeholder[] = {
+	{"i", print_int},
+	{"d", print_float},
+	{"c", print_char},
+	{"s", print_str},
+	{NULL, NULL},
+};
 
 /**
  * get_format - handles different format specifiers
@@ -7,35 +20,41 @@
  * @place: the variable argument list
  * Return: number of characters printed
  */
-int get_format(char specifier, va_list place)
+int get_format(char specifier, va_list args)
 {
 	int i, count = 0;
 
-	for (i = 0; placeholder[i] != NULL; i++)
+	for (i = 0; placeholder[i].ph != NULL; i++)
 	{
-		if (s == placeholder[i].ph)
+		if (placeholder[i].ph[0] == specifier)
 		{
-			count = _strlen(*s);
+			count = placeholder[i].f(args);
+			break;
 		}
 	}
-	return(placeholder[i].f);
+	return (count);
 }
-
 /**
- * print_int - prints a number
- * @place:
- * Return:
- */
-int print_int(place)
+  * _strlen - get the length of the string
+  * @:
+  * Return: the length of the string
+  */
+int _strlen(char *s)
 {
-	unsigned int len;
-	int valor, n;
-	char str;
+	int i;
 
-	valor = va_arg(place int);
+	for (i = 0; s[i] != '\0'; i++)
+		;
 
-	if (n < 0)
-	{
-		
-	}
+	return (i);
 }
+ /**
+  * _putchar
+  * @
+  * Return:
+  */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
