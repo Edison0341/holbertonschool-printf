@@ -35,10 +35,10 @@ int get_format(char specifier, va_list args)
 	return (count);
 }
 /**
-  * _strlen - get the length of the string
-  * @:
-  * Return: the length of the string
-  */
+ * _strlen - get the length of the string
+ * @:
+ * Return: the length of the string
+ */
 int _strlen(char *s)
 {
 	int i;
@@ -48,13 +48,100 @@ int _strlen(char *s)
 
 	return (i);
 }
- /**
-  * _putchar
-  * @
-  * Return:
-  */
+/**
+ * _putchar
+ * @
+ * Return:
+ */
 int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
+
+/**
+ *
+ *
+ *
+ * Return:
+ */
+
+int print_str(v_list args)
+{
+	char *string = va_arg(args, *char)
+		int count = 0;
+
+	if (string == NULL)
+		string = NULL;
+
+	while (*string)
+	{
+		_putchar(*string);
+		count++;
+		string++;
+	}
+	return count;
+}
+
+/**
+ *
+ *
+ *
+ * Return:
+ */
+
+int print_char(va_list args)
+{
+	char *c = va_arg(args, *char)
+		int count = 0;
+
+	if (c == NULL)
+		return (NULL);
+	while (*c)
+	{
+		_putchar(*C);
+		count++;
+		c++;
+	}
+	return count;
+}
+
+/**
+ *
+ *
+ *
+ * Return:
+ */
+
+int print_int(va_list args)
+{
+	int = va_arg(args, int);
+	int count = 0;
+	int num = n;
+	char buffer[12];
+	char *str = buffer + sizeof(buffer) -1;
+
+	*str = '\0';
+	if (n == 0)
+		_putchar('\0');
+	return(1);
+	{
+		if (n < 0)
+			_putchar('-');
+		count++;
+		num = -num;
+	}
+	while (num > 0)
+	{
+		*str = (num % 10) + '\0';
+		num/=10;
+	}
+	while (*str)
+	{
+		_putchar(*str++);
+		count++;
+	}
+	return (count);
+}
+
+
 
