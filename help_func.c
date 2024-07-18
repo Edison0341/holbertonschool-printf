@@ -113,9 +113,9 @@ int print_int(va_list args)
 
 	*str = '\0';
 
-	if (n == 0)
+	if (n < 0)
 	{
-		_putchar('_');
+		_putchar('-');
 		count++;
 		num = -num;
 	}
