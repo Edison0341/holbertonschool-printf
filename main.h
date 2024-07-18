@@ -2,17 +2,21 @@
 #define MAIN_H
 #include <stdarg.h>
 #include <stdio.h>
-
+#include <unistd.h>
+#include <stdlib.h>
 typedef struct
 {
-char *l;
-int (*f)()
-} placeholder;
-int print_int(place);
-int _printf(char *s, ...);
+char *ph;
+int (*f)(va_list);
+} placeholder_t;
+
+int print_int(va_list args);
+int _printf(const char *format, ...);
 int _strlen(char *s);
+int print_char(va_list);
+int get_format(char specifier, va_list args);
+int print_str(va_list args);
+int print_float(va_list args);
 int _putchar(char c);
-int get_format(char c,char *s);
-int print_str(place);
-int print_float(place);
+
 #endif /* MAIN_H */
