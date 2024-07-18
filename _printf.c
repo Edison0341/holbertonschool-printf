@@ -20,7 +20,8 @@ int _printf(const char *format, ...)
 		{
 			if (format[i] == '%' && format[i + 1] != '\0')
 			{
-					count += get_format(format[++i], args);
+					
+				count += get_format(format[i + 1], args);
 			}
 			else
 			{
@@ -29,7 +30,6 @@ int _printf(const char *format, ...)
 			}
 		}
 	}
-
 	va_end(args);
 	return (count);
 }
