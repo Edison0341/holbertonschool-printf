@@ -1,5 +1,18 @@
 #include "main.h"
 #include <stdarg.h>
+/**
+ * hold - selects the correct function
+ *
+ *
+ */
+
+placeholder_t placeholder[] = {
+	{"i", print_int},
+	{"d", print_float},
+	{"c", print_char},
+	{"s", print_str},
+	{NULL, NULL},
+};
 
 /**
  * get_format - handles different format specifiers
@@ -7,35 +20,128 @@
  * @place: the variable argument list
  * Return: number of characters printed
  */
-int get_format(char specifier, va_list place)
+int get_format(char specifier, va_list args)
 {
 	int i, count = 0;
 
-	for (i = 0; placeholder[i] != NULL; i++)
+	for (i = 0; placeholder[i].ph != NULL; i++)
 	{
-		if (s == placeholder[i].ph)
+		if (placeholder[i].ph[0] == specifier)
 		{
-			count = _strlen(*s);
+			count = placeholder[i].f(args);
+			break;
 		}
 	}
-	return(placeholder[i].f);
+	return (count);
+}
+/**
+ * _strlen - get the length of the string
+ * @:
+ * Return: the length of the string
+ */
+int _strlen(char *s)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+		;
+
+	return (i);
+}
+/**
+ * _putchar
+ * @
+ * Return:
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
 }
 
 /**
- * print_int - prints a number
- * @place:
+ *
+ *
+ *
  * Return:
  */
-int print_int(place)
+
+int print_str(v_list args)
 {
-	unsigned int len;
-	int valor, n;
-	char str;
+	char *string = va_arg(args, *char)
+		int count = 0;
 
-	valor = va_arg(place int);
+	if (string == NULL)
+		string = NULL;
 
-	if (n < 0)
+	while (*string)
 	{
-		
+		_putchar(*string);
+		count++;
+		string++;
 	}
+	return count;
 }
+
+/**
+ *
+ *
+ *
+ * Return:
+ */
+
+int print_char(va_list args)
+{
+	char *c = va_arg(args, *char)
+		int count = 0;
+
+	if (c == NULL)
+		return (NULL);
+	while (*c)
+	{
+		_putchar(*C);
+		count++;
+		c++;
+	}
+	return count;
+}
+
+/**
+ *
+ *
+ *
+ * Return:
+ */
+
+int print_int(va_list args)
+{
+	int = va_arg(args, int);
+	int count = 0;
+	int num = n;
+	char buffer[12];
+	char *str = buffer + sizeof(buffer) -1;
+
+	*str = '\0';
+	if (n == 0)
+		_putchar('\0');
+	return(1);
+	{
+		if (n < 0)
+			_putchar('-');
+		count++;
+		num = -num;
+	}
+	while (num > 0)
+	{
+		*str = (num % 10) + '\0';
+		num/=10;
+	}
+	while (*str)
+	{
+		_putchar(*str++);
+		count++;
+	}
+	return (count);
+}
+
+
+
