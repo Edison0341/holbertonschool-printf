@@ -9,30 +9,30 @@
  */
 int get_format(char specifier, va_list args)
 {
-        int i, count = 0;
+	int i, count = 0;
 
-        placeholder_t placeholder[] = {
-                {"i", print_int},
-                {"d", print_int},
-                {"c", print_char},
-                {"s", print_str},
-                {NULL, NULL},
-        };
-        if (specifier == '%')
-        {
-                _putchar(specifier);
-                return (1);
-        }
-        else
-        {
-                for (i = 0; placeholder[i].ph != NULL; i++)
-                {
-                        if (placeholder[i].ph[0] == specifier )
-                        {
-                                count += placeholder[i].f(args);
-                                break;
-                        }
-                }
-        }
-        return (count);
+	placeholder_t placeholder[] = {
+		{"i", print_int},
+		{"d", print_int},
+		{"c", print_char},
+		{"s", print_str},
+		{NULL, NULL},
+	};
+	if (specifier == '%')
+	{
+		_putchar(specifier);
+		return (1);
+	}
+	else
+	{
+		for (i = 0; placeholder[i].ph != NULL; i++)
+		{
+			if (placeholder[i].ph[0] == specifier)
+			{
+				count += placeholder[i].f(args);
+				break;
+			}
+		}
+	}
+	return (count);
 }
