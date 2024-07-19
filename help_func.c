@@ -1,60 +1,81 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stdio.h>
 /**
- * hold - selects the correct function
- *
- *
+ *print_char - prints a character
+ *@args: va_list containing the character to be printed
+ *Return: number of characters printed
  */
-
-placeholder_t placeholder[] = {
-	{"i", print_int},
-	{"d", print_float},
-	{"c", print_char},
-	{"s", print_str},
-	{NULL, NULL},
-};
-
-/**
- * get_format - handles different format specifiers
- * @specifier: the format specifier character
- * @place: the variable argument list
- * Return: number of characters printed
- */
-int get_format(char specifier, va_list args)
+int print_char(va_list args)
 {
-	int i, count = 0;
+	char c = (char)va_arg(args, int);
 
-	for (i = 0; placeholder[i].ph != NULL; i++)
+	_putchar(c);
+
+	return (1);
+}
+
+
+/**
+ *print_str - prints a string from variadic arguments
+ *@args: variadic argument list
+ *Return: number of characters printed
+ */
+
+int print_str(va_list args)
+{
+	char *string = va_arg(args, char *);
+	int count = 0;
+
+	if (string == NULL)
 	{
-		if (placeholder[i].ph[0] == specifier)
-		{
-			count = placeholder[i].f(args);
-			break;
-		}
+		string = NULL;
+	}
+
+	while (*string)
+	{
+		_putchar(*string++);
+		count++;
 	}
 	return (count);
 }
+
 /**
-  * _strlen - get the length of the string
-  * @:
-  * Return: the length of the string
-  */
-int _strlen(char *s)
-{
-	int i;
+ *print_int - prints an integer from the variadic arguments
+ *@args: the variadic argument list
+ *Return: number of characters printed
+ */
 
-	for (i = 0; s[i] != '\0'; i++)
-		;
-
-	return (i);
-}
- /**
-  * _putchar
-  * @
-  * Return:
-  */
-int _putchar(char c)
+int print_int(va_list args)
 {
-	return (write(1, &c, 1));
+	int n = va_arg(args, int);
+	int num = n;
+	int count = 0;
+	char buffer[12];
+	char *str = buffer + sizeof(buffer) - 1;
+
+	*str = '\0';
+
+	if (n < 0)
+	{
+		_putchar('-');
+		count++;
+		num = -num;
+	}
+
+	while (num > 0)
+	{
+		*--str = (num % 10) + '0';
+		num /= 10;
+	}
+
+	while (*str)
+	{
+		_putchar(*str++);
+		count++;
+	}
+
+	return (count);
+
 }
 
