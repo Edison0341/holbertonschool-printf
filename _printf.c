@@ -13,14 +13,24 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	if (format != NULL)
+	if (format == NULL)
 	{
-		for (i = 0; format[i] != '\0'; i++)
+		return (-1);
+	}
+
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (format[i] =='%')
 		{
-			if (format[i] == '%' && format[i + 1] != '\0')
+			if (format[i + 1] == '%')
+			{
+				_putchar('%');
+				count++;
+				i++;
+			}
+			else if (format[i + 1] != '\0')
 			{
 				int printed = get_format(format[i + 1], args);
-
 				if (printed != 0)
 				{
 					count += printed;
@@ -28,16 +38,17 @@ int _printf(const char *format, ...)
 				}
 				else
 				{
-					count += _putchar(format[i]);
+					_putchar(format[i]);
+					count++;
 				}
 			}
-			else
-			{
-				count += _putchar(format[i]);
-			}
+		}
+		else
+		{
+			_putchar(format[i]);
+			count++;
 		}
 	}
 	va_end(args);
-
 	return (count);
 }
