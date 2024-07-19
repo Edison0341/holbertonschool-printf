@@ -2,80 +2,24 @@
 #include <stdarg.h>
 #include <stdio.h>
 /**
- * hold - selects the correct function
- *
- *
- */
-
-placeholder_t placeholder[] = {
-	{"i", print_int},
-	{"d", print_int},
-	{"c", print_char},
-	{"s", print_str},
-	{NULL, NULL},
-};
-
-/**
- * get_format - handles different format specifiers
- * @specifier: the format specifier character
- * @place: the variable argument list
- * Return: number of characters printed
- */
-int get_format(char specifier, va_list args)
-{
-	int i, count = 0;
-
-	for (i = 0; placeholder[i].ph != NULL; i++)
-	{
-		if (placeholder[i].ph[0] == specifier)
-		{
-			count = placeholder[i].f(args);
-			break;
-		}
-	}
-	return (count);
-}
-/**
- * _strlen - get the length of the string
- * @:
- * Return: the length of the string
- */
-int _strlen(char *s)
-{
-	int i;
-
-	for (i = 0; s[i] != '\0'; i++)
-		;
-
-	return (i);
-}
-/**
- * _putchar
- * @
- * Return:
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-/**
- *
- *
- *
+ *print_char - prints a character
+ *@args: va_list containing the character to be printed
+ *Return: number of characters printed
  */
 int print_char(va_list args)
 {
 	char c = (char)va_arg(args, int);
+
 	_putchar(c);
+
 	return (1);
 }
 
 
 /**
- *
- *
- *
- * Return:
+ *print_str - prints a string from variadic arguments
+ *@args: variadic argument list
+ *Return: number of characters printed
  */
 
 int print_str(va_list args)
@@ -93,14 +37,13 @@ int print_str(va_list args)
 		_putchar(*string++);
 		count++;
 	}
-	return count;
+	return (count);
 }
 
 /**
- *
- *
- *
- * Return:
+ *print_int - prints an integer from the variadic arguments
+ *@args: the variadic argument list
+ *Return: number of characters printed
  */
 
 int print_int(va_list args)
@@ -120,7 +63,7 @@ int print_int(va_list args)
 		num = -num;
 	}
 
-	while (num > 0 )
+	while (num > 0)
 	{
 		*--str = (num % 10) + '0';
 		num /= 10;
