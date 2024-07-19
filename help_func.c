@@ -29,7 +29,7 @@ int print_str(va_list args)
 
 	if (string == NULL)
 	{
-		string = NULL;
+		string = "(null)";
 	}
 
 	while (*string)
@@ -56,6 +56,11 @@ int print_int(va_list args)
 
 	*str = '\0';
 
+	if (n == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
 	if (n < 0)
 	{
 		_putchar('-');
