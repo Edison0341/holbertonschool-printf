@@ -26,4 +26,5 @@ int print_char(va_list);
 int get_format(char specifier, va_list args);
 int print_str(va_list args);
 int _putchar(char c);
+
 #endif /* MAIN_H */
