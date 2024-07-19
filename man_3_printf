@@ -1,0 +1,30 @@
+TH man_3_print " July 19, 2024."
+SH Name
+  printf - re creation of the printf function
+
+SYNOPSIS
+  printf FORMAT [ARGUMENT]...
+  printf option to use this function the #include "main.h" header is nedeed.
+
+DESCRIPTION
+  printf function produces output according
+  to the stdout
+
+  %c  print to the characte
+
+  % sprint the strings
+
+  %d print integer and float
+
+  %i print integer and float
+
+RETURN VALUE
+  Function returns an integer representing the numbers
+  of symbols or for the strings.
+
+COMPILATION
+  #include "main.h"
+  gcc -Wall -Wextra -Werror -pedantic -std=gnu89 -Wno-format *.c
+
+AUTHOR
+  Edison Ortiz, Zuleyka Rubio
