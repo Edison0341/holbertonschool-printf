@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdarg.h>
 /**
  * _printf - custom implementation of printf
@@ -12,43 +13,36 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-
-	if (format == NULL)
+	
+	if (format != NULL)
 	{
-		return (-1);
-	}
-
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] =='%')
+		for (i = 0; format[i] != '\0'; i++)
 		{
-			if (format[i + 1] == '%')
-			{
-				_putchar('%');
-				count++;
-				i++;
-			}
-			else if (format[i + 1] != '\0')
+			if (format[i] == '%' && format [i + 1] != '\0')
 			{
 				int printed = get_format(format[i + 1], args);
-				if (printed != 0)
+
+				if (printed == 0)
 				{
-					count += printed;
+					count += _putchar(format[i]);
+				}
+				else if (printed < 0)
+				{
 					i++;
 				}
 				else
 				{
-					_putchar(format[i]);
-					count++;
+					count += printed;
+					i++;
 				}
 			}
-		}
-		else
-		{
-			_putchar(format[i]);
-			count++;
+			else
+			{
+				count += _putchar(format[i]);
+			}
 		}
 	}
 	va_end(args);
+
 	return (count);
 }

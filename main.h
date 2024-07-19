@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <limits.h>
 /**
  * struct placeholder_t - structure to hold a placeholder and its
  * corresponding function
