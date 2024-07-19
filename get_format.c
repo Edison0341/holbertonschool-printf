@@ -29,7 +29,7 @@ int get_format(char specifier, va_list args)
 		{
 			if (placeholder[i].ph[0] == specifier)
 			{
-				count += placeholder[i].f(args);
+				count = placeholder[i].f(args);
 				break;
 			}
 		}
